@@ -164,6 +164,8 @@ while option != 0:
                 delete_submenu()
                 delete_suboption = int(input("Enter you options: "))
 
+    else:
+        print("Bad choice")
 
     print()
     menu()

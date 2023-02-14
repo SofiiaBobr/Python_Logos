@@ -1,0 +1,5 @@
+a = input('Enter name \n')
+b = input('Enter family name \n')
+c = input('Enter age \n')
+print('Hello', a, b, '!!!')
+print('You have', c, 'age!')

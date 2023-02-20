@@ -273,6 +273,7 @@ def seeid():
     print()
     showadmpermish()
 
+
 def validnum1(a):
     checkNum = validationfloat(a)
     if checkNum is True:
@@ -283,6 +284,7 @@ def validnum1(a):
             return True
     else:
         print()
+
 
 def check():
     option = input("Enter item what you want to check: ")

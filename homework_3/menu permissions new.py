@@ -272,9 +272,26 @@ def seeid():
     print("This is the id the list:", id(Newlist))
     print()
     showadmpermish()
+
+def validnum1(a):
+    checkNum = validationfloat(a)
+    if checkNum is True:
+        b = list(a.split('.'))
+        if len(b) > 1:
+            return False
+        else:
+            return True
+    else:
+        print()
+
 def check():
     option = input("Enter item what you want to check: ")
-    if option in Newlist:
+    validnumcustom = validnum1(option)
+    if str(option) in Newlist:
+        print("So this symbol is in the list")
+    elif validnumcustom is True and int(option) in Newlist:
+        print("So this symbol is in the list")
+    elif validnumcustom is False and float(option) in Newlist:
         print("So this symbol is in the list")
     else:
         print("No, this symbol is not in the list")

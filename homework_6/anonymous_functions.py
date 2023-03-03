@@ -24,7 +24,7 @@ print("\nPart 3")
 
 
 def tuple():
-    inp = input("Create list, use tab tu split:  ")
+    inp = input("Create list, use tab to split:  ")
     list = inp.split(' ')
     d = *list,
 

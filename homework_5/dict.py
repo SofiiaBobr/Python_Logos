@@ -1,4 +1,3 @@
-
 list1 = ("number1", "number2", "number3", "number4", "number5")
 list2 = []
 list4 = []
@@ -42,8 +41,7 @@ def enterlist2(list):
     if validresoult is True:
         inp = int(inpu)
         if inp == 1:
-            list1 = createListDictTwo(list)
-            list.extend(list1)
+            list = createListDictTwo(list2)
         elif inp == 2:
             list.extend([1, 2, 3, 4, 5])
         else:

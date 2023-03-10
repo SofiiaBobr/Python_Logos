@@ -1,5 +1,4 @@
-
-
+dictss = {}
 inputx = []
 
 
@@ -21,10 +20,12 @@ def createCorrectList(input3):
 
 
 def createFirstDict(input4, c):
+    r = listArg(input4)
+    h = *r,
     dictx = {}
     for i in range(len(input4)):
-        dictx[input4[i]] = c[i]
-    return dictx
+        dictss.update({h[i]: {input4[i]: c[i]}})
+    return dictss
 
 
 def listArg(d):
@@ -33,16 +34,6 @@ def listArg(d):
         h.append(str(i)+" arg")
     return h
 
-
-def createSecondDict(a):
-    dictss = {}
-    r = listArg(a)
-    h = *r,
-    c = a.items()
-    x = *c,
-    for i in range(0, len(a)):
-        dictss[h[i]] = x[i]
-    return dictss
 
 
 def type_and_value_decorator(func):
@@ -54,8 +45,7 @@ def type_and_value_decorator(func):
         input4 = createCorrectList(input3)
         c = list(map(lambda x: "int" if isinstance(x, int) else "str", input4))
         dicts = createFirstDict(input4, c)
-        findict = createSecondDict(dicts)
-        func(findict)
+        func(dicts)
     return wrapper
 
 

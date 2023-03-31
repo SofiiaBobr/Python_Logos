@@ -26,7 +26,7 @@ def seemsLikeSort():
                     dct[char] = 1
                 elif char.isalpha() == True and char.isalpha and char in dct.keys():
                     dct[char] += 1
-        print(freq)
+        print("All alphabetic characters ", freq, "-----------------")
         print(dct.items())
 
 

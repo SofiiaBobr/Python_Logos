@@ -14,6 +14,8 @@ class Main:
         self.mydict.pop(key)
         print("Done", self.mydict)
 
+
+
     def add_tuple(self, item):
         new_list = list(self.mytuple)
         new_list.append(item)
@@ -33,6 +35,9 @@ class Main:
 
 a = Main()
 
+
+LoginAdmin = "Admin"
+Password = "aaaa"
 
 def menu():
     while True:
@@ -60,4 +65,21 @@ def menu():
             print("exit")
             break
 
-menu()
+def perm():
+    while True:
+        print("[1] Log in as an administrator\n[2] Log in as a user\n[0] Exit")
+        user = input("= ")
+        if user == "1":
+            credlogin = input("Enter login =")
+            credpass = input("Enter password =")
+            if credlogin == LoginAdmin and credpass == Password:
+                menu()
+            else:
+                print("Incorrect login or password")
+        elif user == "2":
+            print("done", a.getinfo())1
+
+        elif user == "0":
+            print("exit")
+            break
+perm()

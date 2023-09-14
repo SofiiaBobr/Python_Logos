@@ -31,11 +31,11 @@ class Data():
 
     def count_tuple(self, item):
         new_value = self.mytuple.count(item)
-        print("done")
+        print("done", new_value)
 
     def index_tuple(self, item):
-        self.mytuple.index(item)
-        print("done")
+        new_valeu = self.mytuple.index(item)
+        print("done", new_valeu)
 
     def show_dict(self):
         print(self.mydict)
@@ -49,7 +49,7 @@ class Data():
         if admin:
             while True:
                 print(
-                    " 1-Add dict \n 2-Add tuple \n 3-Get info \n 4-Delete item from dict \n 5-The number of repetitions of a certain value \n 6-Find the first index, for value: \n 10-Go to back panel\n 11 - Exit-EXIT")
+                    " 1-Add dict \n 2-Add tuple \n 3-Get info \n 4-Delete item from dict \n 5-The number of repetitions of a certain value in tuple \n 6-Find the first index, for value in tuple: \n 10-Go to back panel\n 11 - Exit-EXIT")
                 answer = input("= ")
                 if answer == "1":
                     new_key = input("Type key:  ")
@@ -68,7 +68,7 @@ class Data():
                     count = input("Type value:  ")
                     self.count_tuple(count)
                 elif answer == "6":
-                    index = input("Type index:  ")
+                    index = input("Type value:  ")
                     self.index_tuple(index)
                 elif answer == "10":
                     print("exit")

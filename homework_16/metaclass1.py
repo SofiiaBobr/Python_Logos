@@ -70,7 +70,7 @@ class ATM:
             json.dump(self._transactions[-1], file)
             file.write("\n")
 
-# Example Usage:
+
 user_ATM = ATM('1234', 1000)
 pin_entered = input('Enter PIN: ')
 if user_ATM.check_pin(pin_entered):

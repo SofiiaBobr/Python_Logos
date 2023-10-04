@@ -15,7 +15,28 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.http import HttpResponse
+
+class Test:
+    def __init__(self, url):
+        self.url = url
+    def path(self):
+        return self.url
+
+def test(request):
+    return HttpResponse("<h1>test</h1>")
+
+def main(request):
+    return HttpResponse("<h1>test1</h1>")
+
+def main_page(request):
+    return HttpResponse("<h1>test2</h1>")
+
+myurl = Test('test/main/')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('test/', test),
+    path(myurl.path(), main),
+    path('main_page/home/python', main_page)
 ]

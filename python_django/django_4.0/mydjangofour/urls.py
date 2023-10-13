@@ -39,8 +39,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('forum/', include('forum.urls')),
     path('app2/', include('myapp2.urls')),
+    path('shop/', include('shop.urls')),
     path('test/', test),
     path(myurl.path(), main),
-    path('main_page/home/python', main_page)
+    path('main_page/home/python', main_page),
 
 ]

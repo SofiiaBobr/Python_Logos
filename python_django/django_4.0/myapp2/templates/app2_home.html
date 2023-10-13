@@ -4,10 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel = 'stylesheet' href="{% static 'css/stail.css' %}">
+    <link rel = 'stylesheet' href="{% static 'css/stail_home.css' %}">
 
 </head>
 <body>
-  <h1>App2_Home</h1>>
+  <h1>App2_Home</h1>
+    <p class="my-class">It is home page</p>
+    <div id="my-id">a place for plans</div>
+  <ul>
+    {% for event in events %}
+      <li> {{event.name}} {{event.event_date}} {{event.venue}} </li>
+    {% endfor %}
+  </ul>
+
+
 </body>
 </html>

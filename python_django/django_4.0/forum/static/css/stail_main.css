@@ -1,0 +1,31 @@
+h1{color: coral;}
+
+.my-class {
+    font-size: 32px;
+    color: #4f4f4f;
+    text-align: center;
+
+}
+
+#my-id1 {
+    font-size: 19px;
+    background: linear-gradient(transparent 10%, #272727 100%);
+    color: #f5dd5d;
+    text-align: center;
+
+}
+
+#my-id2 {
+    background: linear-gradient(transparent 10%, #583305 100%);
+    font-size: 15px;
+    text-align: center;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+
+    #my-id2 > span {
+        display: inline-block;
+        vertical-align: middle;
+
+    }
+}

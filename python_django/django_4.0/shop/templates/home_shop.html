@@ -6,5 +6,19 @@
 </head>
 <body>
 <h1>Shop</h1>
+
+{% for i in cats%}
+<a href="{% url 'products' i.name %}">{{i.name}}</a>
+<br>
+{%endfor%}
+<hr>
+<h1>Products</h1>
+{% for i in products%}
+<h2>{{i.name}}</h2>
+<p> Price:{{i.price}}</p>
+<p><a href="{{i.link}}", target="_blank">Link:</a></p>
+<hr>
+
+{%endfor%}
 </body>
 </html>

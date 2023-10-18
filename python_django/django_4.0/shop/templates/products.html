@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Product {{cat}}</h1>
+<br>
+{% for i in products%}
+<h2>{{i.name}}</h2>
+<p> Price:{{i.price}}</p>
+<p><a href="{{i.link}}", target="_blank">Link:</a></p>
+<hr>
+
+{%endfor%}
+</body>
+</html>

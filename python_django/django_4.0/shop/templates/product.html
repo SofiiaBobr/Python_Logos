@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{%extends 'base.html'%}
+{%block content%}
+<h1>Product</h1>
+<h2>{{product.name}}</h2>
+<p> Price:{{product.price}}</p>
+<p><a href="{{product.link}}", target="_blank">Link:</a></p>
+<hr>
+<a href="{% url 'products' cat %}" class="my-button">Back:</a>
+{%endblock%}

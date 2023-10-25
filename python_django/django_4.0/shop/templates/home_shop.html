@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Shop_Home</title>
-</head>
-<body>
+{%extends 'base.html'%}
+{%block content%}
 <h1>Shop</h1>
 
 {% for i in cats%}
@@ -12,13 +7,14 @@
 <br>
 {%endfor%}
 <hr>
+<a href="{% url 'add_product'%}" class="my-button">Create product:</a>
+<hr>
 <h1>Products</h1>
 {% for i in products%}
-<h2>{{i.name}}</h2>
+<h2><a href="{% url 'product' i.cat.name i.pk %}">{{i.name}}</a></h2>
 <p> Price:{{i.price}}</p>
 <p><a href="{{i.link}}", target="_blank">Link:</a></p>
 <hr>
 
 {%endfor%}
-</body>
-</html>
+{%endblock%}

@@ -1,0 +1,20 @@
+{%extends 'base.html'%}
+{%block content%}
+<h1>Categorys</h1>
+
+{% for i in cats%}
+<a href="{% url 'products' i.name %}">{{i.name}}</a>
+<br>
+{%endfor%}
+<hr>
+<a href="{% url 'add_product'%}" class="my-button">Create product:</a>
+<hr>
+<h1>Products</h1>
+{% for i in products%}
+<h2><a href="{% url 'product' i.cat.name i.pk %}">{{i.name}}</a></h2>
+<p> Price:{{i.price}}</p>
+<p><a href="{{i.link}}", target="_blank">Link:</a></p>
+<hr>
+
+{%endfor%}
+{%endblock%}

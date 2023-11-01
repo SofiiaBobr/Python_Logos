@@ -1,0 +1,13 @@
+{%extends 'base.html'%}
+{%block content%}
+<h1>Product {{cat}}</h1>
+<br>
+{% for i in products%}
+<h2><a href="{% url 'product' i.cat.name i.pk %}">{{i.name}}</a></h2>
+<p> Price:{{i.price}}</p>
+<p><a href="{{i.link}}", target="_blank">Link:</a></p>
+<hr>
+
+{%endfor%}
+<a href="{% url 'home' %}" class="my-button">Back:</a>
+{%endblock%}

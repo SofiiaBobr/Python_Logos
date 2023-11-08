@@ -1,20 +1,19 @@
 {%extends 'base.html'%}
 {%block content%}
-<h1>Categorys</h1>
-
-{% for i in cats%}
-<a href="{% url 'products' i.name %}">{{i.name}}</a>
-<br>
-{%endfor%}
-<hr>
-<a href="{% url 'add_product'%}" class="my-button">Create product:</a>
+<a href="{% url 'add_product'%}" class="btn btn-outline-success">Create product</a>
 <hr>
 <h1>Products</h1>
-{% for i in products%}
-<h2><a href="{% url 'product' i.cat.name i.pk %}">{{i.name}}</a></h2>
-<p> Price:{{i.price}}</p>
-<p><a href="{{i.link}}", target="_blank">Link:</a></p>
-<hr>
-
-{%endfor%}
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for i in products%}
+    <div class="col">
+      <div class="card">
+        <img src="https://cdn.home-animal.org.ua/images/210/210-f0e49cdc3ce96fe027e800e00e4b84c5.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><a href="{%url 'product' i.cat i.id%}" style="text-decoration: none; color:black">{{i.name}}</a></h5>
+          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        </div>
+      </div>
+    </div>
+    {%endfor%}
+ </div>
 {%endblock%}

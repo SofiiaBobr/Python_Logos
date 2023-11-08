@@ -2,12 +2,20 @@
 {%block content%}
 <h1>Product {{cat}}</h1>
 <br>
-{% for i in products%}
-<h2><a href="{% url 'product' i.cat.name i.pk %}">{{i.name}}</a></h2>
-<p> Price:{{i.price}}</p>
-<p><a href="{{i.link}}", target="_blank">Link:</a></p>
-<hr>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for i in products%}
+    <div class="col">
+      <div class="card">
+        <img src="https://cdn.home-animal.org.ua/images/210/210-f0e49cdc3ce96fe027e800e00e4b84c5.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{i.name}}</h5>
+          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        </div>
+      </div>
+    </div>
+    {%endfor%}
+ </div>
 
-{%endfor%}
+
 <a href="{% url 'home' %}" class="my-button">Back:</a>
 {%endblock%}

@@ -13,16 +13,19 @@ def home(request):
 
 
 def products(request, cat):
+    cats = Category.objects.all()
     product_data = Product.objects.filter(cat__name=cat)
-    return render(request, 'products.html', {"products": product_data, 'cat': cat})
+    return render(request, 'products.html', {'cats': cats, "products": product_data, 'cat': cat})
 
 
 def product(request, cat, id):
+    cats = Category.objects.all()
     product = Product.objects.get(pk=id)
-    return render(request, 'product.html', {"product": product, 'cat': cat})
+    return render(request, 'product.html', {'cats': cats, "product": product, 'cat': cat})
 
 
 def add_product(request):
+    cats = Category.objects.all()
     if request.method == 'POST':
         form = Product_Form(request.POST)
         if form.is_valid():
@@ -31,16 +34,17 @@ def add_product(request):
             return redirect('home')
     else:
         form = Product_Form()
-    return render(request, 'addproduct.html', {'form': form})
+    return render(request, 'addproduct.html', {'cats': cats, 'form': form})
 
 def update_product(request, id):
+    cats = Category.objects.all()
     product = Product.objects.get(pk=id)
     form = Product_Form(request.POST or None, instance=product)
     if form.is_valid():
         form.save()
         messages.success(request, ('Product update!!!'))
         return redirect ('home')
-    return render(request, 'update_product.html', {'form': form})
+    return render(request, 'update_product.html', {'cats': cats, 'form': form})
 
 def delete_product(request, id):
     product = Product.objects.get(pk=id)

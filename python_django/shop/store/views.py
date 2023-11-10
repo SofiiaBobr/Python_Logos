@@ -3,13 +3,17 @@ from .models import Product, Category
 from .forms import Product_Form
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.core.paginator import Paginator
 
 
 # Create your views here.
 def home(request):
     cats = Category.objects.all()
     product_data = Product.objects.all()
-    return render(request, 'home_shop.html', {'cats': cats, 'products': product_data})
+    p = Paginator(Product.objects.all(), 3)
+    page = request.GET.get('page')
+    products = p.get_page(page)
+    return render(request, 'home_shop.html', {'cats': cats, 'product_data': product_data, 'products': products})
 
 
 def products(request, cat):

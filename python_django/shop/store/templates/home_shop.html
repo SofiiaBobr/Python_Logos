@@ -1,4 +1,5 @@
 {%extends 'base.html'%}
+{%load static%}
 {%block content%}
 <a href="{% url 'add_product'%}" class="btn btn-outline-success">Create product</a>
 <hr>
@@ -7,7 +8,9 @@
     {% for i in products%}
     <div class="col">
       <div class="card">
-        <img src="https://cdn.home-animal.org.ua/images/210/210-f0e49cdc3ce96fe027e800e00e4b84c5.jpg" class="card-img-top" alt="...">
+
+
+        <img src="{%static "images/IMG_2401.JPG"%}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title"><a href="{%url 'product' i.cat i.id%}" style="text-decoration: none; color:black">{{i.name}}</a></h5>
           <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -15,5 +18,20 @@
       </div>
     </div>
     {%endfor%}
+    
  </div>
+ <br>
+ <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    {%if products.has_previous%}
+    <li class="page-item"><a class="page-link" href="?page=1">&laquo</a></li>
+    <li class="page-item"><a class="page-link" href="?page={{products.previous_page_number}}">Previous</a></li>
+    {%endif%}
+    <li class="page-item disabled"><a class="page-link" href="">{{products.number}} off {{products.paginator.num_pages}}</a></li>
+   {%if products.has_next%}
+   <li class="page-item"><a class="page-link" href="?page={{products.next_page_number}}">Next</a></li>
+   <li class="page-item"><a class="page-link" href="?page={{products.paginator.num_pages}}">&raquo</a></li>
+   {%endif%}
+  </ul>
+</nav>
 {%endblock%}

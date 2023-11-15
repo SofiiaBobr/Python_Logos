@@ -13,6 +13,7 @@ class Product(models.Model):
     price = models.FloatField()
     link = models.URLField()
     cat = models.ForeignKey(Category, on_delete=models.CASCADE)
+    image = models.ImageField(null=True, blank=True, upload_to='images/')
 
     def __str__(self):
         return self.name

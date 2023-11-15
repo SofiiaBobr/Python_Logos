@@ -1,12 +1,20 @@
+from django.conf import settings
 from django.shortcuts import render, redirect
 from .models import Product, Category
 from .forms import Product_Form
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
-
+from django.utils.safestring import mark_safe
+import os
 
 # Create your views here.
+
+def view_image(request, image_path):
+    product = Product.objects.get(image=image_path)
+    context = {'product': product, 'image_url': image_path}
+    return render(request, 'view_image.html', context)
+
 def home(request):
     cats = Category.objects.all()
     product_data = Product.objects.all()
@@ -31,10 +39,15 @@ def product(request, cat, id):
 def add_product(request):
     cats = Category.objects.all()
     if request.method == 'POST':
-        form = Product_Form(request.POST)
+        form = Product_Form(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request, ('Product create!!!'))
+            # messages.success(request, (f'Product create!! {request.FILES["form.save().image.url}"]}'))
+            # return redirect('home')
+            new_product = form.save()
+            image_path = str(new_product.image)
+            image_url = f'/view_image/{image_path}'
+            messages.success(request, mark_safe(f'Product created!! <a href="{image_url}" target="_blank">View Image</a>'))
             return redirect('home')
     else:
         form = Product_Form()
@@ -43,7 +56,7 @@ def add_product(request):
 def update_product(request, id):
     cats = Category.objects.all()
     product = Product.objects.get(pk=id)
-    form = Product_Form(request.POST or None, instance=product)
+    form = Product_Form(request.POST or None, request.FILES or None, instance=product)
     if form.is_valid():
         form.save()
         messages.success(request, ('Product update!!!'))

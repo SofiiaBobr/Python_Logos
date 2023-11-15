@@ -1,9 +1,15 @@
 {%extends 'base.html'%}
+{%load static%}
 {%block content%}
 <h1>Product</h1>
+{%if product.image%}
+        <img src="{{product.image.url}}" class="card-img-top" alt="...">
+        {%else%}
+        <img src="{%static "images/IMG_2401.JPG"%}" class="card-img-top" alt="...">
+        {%endif%}
 <h2>{{product.name}}</h2>
 <p> Price:{{product.price}}</p>
-<p><a href="{{product.link}}", target="_blank">Link:</a></p>
+<p><a href="{{product.link}}" target="_blank">Link:</a></p>
 <hr>
 <a href="{% url 'update_product' product.id %}" class="my-button">Update:</a>
 <a href="{% url 'delete_product' product.id %}" class="my-button">Delete:</a>

@@ -9,8 +9,12 @@
     <div class="col">
       <div class="card">
 
-
+          {%if i.image%}
+        <img src="{{i.image.url}}" class="card-img-top" alt="...">
+        {%else%}
         <img src="{%static "images/IMG_2401.JPG"%}" class="card-img-top" alt="...">
+        {%endif%}
+
         <div class="card-body">
           <h5 class="card-title"><a href="{%url 'product' i.cat i.id%}" style="text-decoration: none; color:black">{{i.name}}</a></h5>
           <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>

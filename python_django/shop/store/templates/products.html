@@ -1,4 +1,5 @@
 {%extends 'base.html'%}
+{%load static%}
 {%block content%}
 <h1>Product {{cat}}</h1>
 <br>
@@ -6,7 +7,11 @@
     {% for i in products%}
     <div class="col">
       <div class="card">
-        <img src="https://cdn.home-animal.org.ua/images/210/210-f0e49cdc3ce96fe027e800e00e4b84c5.jpg" class="card-img-top" alt="...">
+        {%if i.image%}
+        <img src="{{i.image.url}}" class="card-img-top" alt="...">
+        {%else%}
+        <img src="{%static "images/IMG_2401.JPG"%}" class="card-img-top" alt="...">
+        {%endif%}
         <div class="card-body">
           <h5 class="card-title">{{i.name}}</h5>
           <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>

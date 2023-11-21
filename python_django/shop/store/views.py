@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
 from django.utils.safestring import mark_safe
 import os
+from django.http import Http404
 
 # Create your views here.
 
@@ -37,37 +38,46 @@ def product(request, cat, id):
 
 
 def add_product(request):
-    cats = Category.objects.all()
-    if request.method == 'POST':
-        form = Product_Form(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            # messages.success(request, (f'Product create!! {request.FILES["form.save().image.url}"]}'))
-            # return redirect('home')
-            new_product = form.save()
-            image_path = str(new_product.image)
-            image_url = f'/view_image/{image_path}'
-            messages.success(request, mark_safe(f'Product created!! <a href="{image_url}" target="_blank">View Image</a>'))
-            return redirect('home')
+    if not request.user.groups.filter(name='Create').exists() and not request.user.is_superuser:
+        raise Http404
     else:
-        form = Product_Form()
-    return render(request, 'addproduct.html', {'cats': cats, 'form': form})
+        cats = Category.objects.all()
+        if request.method == 'POST':
+            form = Product_Form(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                # messages.success(request, (f'Product create!! {request.FILES["form.save().image.url}"]}'))
+                # return redirect('home')
+                new_product = form.save()
+                image_path = str(new_product.image)
+                image_url = f'/view_image/{image_path}'
+                messages.success(request, mark_safe(f'Product created!! <a href="{image_url}" target="_blank">View Image</a>'))
+                return redirect('home')
+        else:
+            form = Product_Form()
+        return render(request, 'addproduct.html', {'cats': cats, 'form': form})
 
 def update_product(request, id):
-    cats = Category.objects.all()
-    product = Product.objects.get(pk=id)
-    form = Product_Form(request.POST or None, request.FILES or None, instance=product)
-    if form.is_valid():
-        form.save()
-        messages.success(request, ('Product update!!!'))
-        return redirect ('home')
-    return render(request, 'update_product.html', {'cats': cats, 'form': form})
+    if not request.user.groups.filter(name='update').exists() and not request.user.is_superuser:
+        raise Http404
+    else:
+        cats = Category.objects.all()
+        product = Product.objects.get(pk=id)
+        form = Product_Form(request.POST or None, request.FILES or None, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, ('Product update!!!'))
+            return redirect ('home')
+        return render(request, 'update_product.html', {'cats': cats, 'form': form})
 
 def delete_product(request, id):
-    product = Product.objects.get(pk=id)
-    product.delete()
-    messages.success(request, ('Product delete!!!'))
-    return redirect('home')
+    if not request.user.groups.filter(name='Delete').exists() and not request.user.is_superuser:
+        raise Http404
+    else:
+        product = Product.objects.get(pk=id)
+        product.delete()
+        messages.success(request, ('Product delete!!!'))
+        return redirect('home')
 
 
 

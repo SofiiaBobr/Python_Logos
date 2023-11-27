@@ -1,0 +1,88 @@
+{% extends 'post_site/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<br><br>
+
+<div class="card mb-3" style="max-width: 80%;">
+  <div class="row g-0">
+    <div class="col-md-4">
+        {% if post.header_image %}
+            <img src="{{ post.header_image.url }}" alt="" class="img-fluid rounded-start" >
+        {% endif %}
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ post.title }}</h5>
+        <p class="card-text">{{ post.body|safe }}</p>
+        <p class="card-text"><small class="text-muted">{{ post.author }} - {{ post.post_date }}</small></p>
+      </div>
+    </div>
+  </div>
+
+    <div class="card-footer bg-transparent">
+        {% if user.is_authenticated %}
+            <form action="{% url 'like_post' post.pk %}" method="POST">
+                {% csrf_token %}
+                {% if liked %}
+                <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-danger">Unlike</button> - {{ total_likes }} Likes
+                {% else %}
+                <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary">like</button> - {{ total_likes }} Likes
+                {% endif %}
+            </form>
+        <br>
+            {% if user.id == post.author.id %}
+            <a href="{% url 'update-post' post.pk %}" class="btn btn-outline-warning btn-sm">Update</a>
+            <a href="{% url 'delete-post' post.pk %}" class="btn btn-outline-danger btn-sm">Delete</a>
+            {% endif %}
+
+        {% endif %}
+    </div>
+
+</div>
+
+<br>
+<h2>Comments</h2>
+
+{% if not post.comment.all %}
+    No Comments Yet... <a href="{% url 'add-comment' post.pk %}">Add One</a>
+{% else %}
+    <a href="{% url 'add-comment' post.pk %}">Add Comment</a>
+    <br>
+    {% for c in post.comment.all %}
+        <strong>{{ c.name }} - {{ c.date_added }}</strong>
+        <br>
+        {{ c.body }}
+        <br>
+        <hr>
+    {% endfor %}
+{% endif %}
+
+<br>
+<div class="card mb-3" style="max-width: 80%">
+  <div class="row g-0">
+    <div class="col-md-4">
+        {% if post.author.profile.profile_image %}
+        <img src="{{ post.author.profile.profile_image.url }}" class='card-img'>
+        {% else %}
+        <img src="{% static 'post_site/images/user_defolt.png' %}" class='card-img'>
+        {%endif%}
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><a href="{% url 'show-profile-page' post.author.profile.id %}">{{ post.author.profile }}</a></h5>
+          <p class="card-text"><small class="text-muted"><a href="{{ post.author.profile.github_url }}">GitHub</a></small> | <small class="text-muted"><a href="{{ post.author.profile.telegram_url }}">Telegram</a></small></p>
+        <p class="card-text">{{ post.author.profile.bio }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<br><br>
+<a href="{% url 'home'%}" class="btn btn-secondary">Home</a>
+<br><br>
+
+
+{% endblock %}

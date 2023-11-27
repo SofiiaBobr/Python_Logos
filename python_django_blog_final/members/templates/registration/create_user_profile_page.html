@@ -1,0 +1,23 @@
+{% extends 'post_site/base.html'%}
+
+{% block content %}
+<h1>Create New Profile Page...</h1>
+<br>
+{% if user.is_authenticated %}
+<div class="form-group">
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-warning">Create Profile Page</button>
+</form>
+</div>
+
+{% else %}
+<br><br>
+<h1>Are you not allowed here!</h1>
+{% endif %}
+
+<br>
+<a href="{% url 'home'%}" class="btn btn-secondary">Home</a>
+
+{% endblock %}

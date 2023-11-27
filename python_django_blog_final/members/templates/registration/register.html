@@ -1,0 +1,14 @@
+{% extends 'post_site/base.html'%}
+
+{% block content %}
+<h1>Register...</h1>
+<br>
+<div class="form-group">
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-warning">Register</button>
+</form>
+</div>
+
+{% endblock %}

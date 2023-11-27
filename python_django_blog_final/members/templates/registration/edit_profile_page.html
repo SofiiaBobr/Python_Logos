@@ -1,0 +1,19 @@
+{% extends 'post_site/base.html'%}
+
+{% block content %}
+<h1>Edit Profile Page...</h1>
+<br>
+
+{% if user.is_authenticated %}
+    {% if user.id == profile.user.id %}
+<br>
+<div class="form-group">
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-warning">Update Profile Page</button>
+</form>
+</div>
+{% endif %}
+{% endif %}
+{% endblock %}

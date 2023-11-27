@@ -1,0 +1,17 @@
+{% extends 'post_site/base.html'%}
+
+{% block content %}
+<h1>Add Comment...</h1>
+<br>
+<div class="form-group">
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-warning">Add Comment</button>
+</form>
+</div>
+
+<br>
+<a href="{% url 'home'%}" class="btn btn-secondary">Home</a>
+
+{% endblock %}

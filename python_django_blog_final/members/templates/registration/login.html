@@ -1,0 +1,22 @@
+{% extends 'post_site/base.html'%}
+
+{% block content %}
+<h1>Login...</h1>
+<br>
+<div class="form-group">
+<form action="" method="POST">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <input type="text" class="form-control" name="username" placeholder="User Name">
+      </div>
+      <div class="mb-3">
+        <input type="password" class="form-control" name="password" placeholder="Password">
+        <div id="emailHelp" class="form-text">Not A User? <a href="{% url 'register' %}">Register Here.</a></div>
+
+      </div>
+
+    <button class="btn btn-warning">Login</button>
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'post_site/base.html'%}
+
+{% block content %}
+<h1>Edit Profile...</h1>
+<br>
+
+{{ user.profile.bio }}
+<br>
+
+<br>
+<div class="form-group">
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-warning">Update Profile</button>
+</form>
+</div>
+{% endblock %}
